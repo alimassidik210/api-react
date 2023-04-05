@@ -17,20 +17,22 @@ const Api = () => {
   const [data1, setData1] = useState([]);
   const [userInput, setUserInput] = useState("");
 
-  function handleSearch() {}
+  const handleSearch = async () => {
+    setData1(await callApi2(userInput));
+  };
 
   useEffect(() => {
     callApi().then((data) => setData(data));
   }, []);
 
   useEffect(() => {
-    callApi2(userInput).then((data1) => setData1(data1));
-  }, [userInput]);
+    callApi2().then((data1) => setData1(data1));
+  }, []);
 
   return (
     <Container className="border border-top-0 mt-3">
       <Row className="d-flex ">
-        <Col className="my-2 col-lg-8 d-flex flex-wrap  align-self-start col-12 mb-5 ">
+        <Col className="my-2 col-lg-8 d-flex flex-wrap  align-self-start col-12 mb-3 ">
           {data
             .map((m) => (
               <Card className="w-100 d-flex align-self-start my-2 ">
@@ -89,7 +91,7 @@ const Api = () => {
               placeholder="Search News"
               onChange={(e) => setUserInput(e.target.value)}
             />
-            <Button variant="primary" disabled>
+            <Button variant="primary" onClick={handleSearch}>
               Search
             </Button>
           </InputGroup>

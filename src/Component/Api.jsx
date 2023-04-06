@@ -23,9 +23,6 @@ const Api = () => {
 
   useEffect(() => {
     callApi().then((data) => setData(data));
-  }, []);
-
-  useEffect(() => {
     callApi2().then((data1) => setData1(data1));
   }, []);
 
